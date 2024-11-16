@@ -11,7 +11,7 @@ def home(request):
         city = request.POST['city']
     else:
         city = 'delhi'
-    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=7d2be569d05b6bba71af22167930d2f5'
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid=apikey'
     PARAMS = {'units':'metric'}
     
     response = requests.get(url,PARAMS)
