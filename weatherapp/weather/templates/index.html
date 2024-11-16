@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>Weather App</h1>
+        </div>
+
+        <form  method="post">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter city">
+            <button class="btn" type="submit">Search</button>
+        </form>
+        
+        {% if name %}
+        <div class="weather">
+            <div class="left">
+                <div class="temp">
+                    <h2>{{temp}}&#176; C</h2>
+                    <h5>Minimun: {{temp_min}}&#176; C</h5>
+                    <h5>Maximum: {{temp_max}}&#176; C</h5>
+                    
+                    
+                </div>
+                <div class="sunarise">
+                    <p class="iconarise">
+                        <img src="{% static './img/sunarise.png' %}" alt="" srcset="" height="50px" width="50px">
+                    </p>
+                    <p>sun rise<br>{{formatted_sunrise}}</p>
+                    
+                </div>
+                <div class="sunset">
+                    <p class="iconset">
+                        <img src="{% static './img/sunset.png' %}" alt="" srcset="" height="50px" width="50px">
+                    </p>
+                    <p>sunset<br>{{formatted_sunset}}</p>
+                    
+                </div>
+                
+                
+                
+                
+            </div>
+            <div class="middle">
+                <h2 class="city">{{name}}</h2>
+                <div class="icon">
+                    <p>
+                        <img src=" https://openweathermap.org/img/wn/{{icon}}.png" width="100px">
+                    </p>
+                </div>
+                <div class="condition">
+                    <p>{{description}}</p>
+                    <p>{{day}}</p>
+                </div>
+    
+            </div>
+            <div class="right">
+                <div class="humidity">
+                    <p class="iconset">
+                        <img src="{% static './img/humi.png' %}" alt="" srcset="" height="30px" width="50px">
+                    </p>
+                    <p>humidity<br>{{humidity}}</p>
+                    
+                </div>
+                <div class="humidity">
+                    <p class="iconset">
+                        <img src="{% static './img/windsp.png' %}" alt="" srcset="" height="30px" width="50px">
+                    </p>
+                    <p>Wind Speed<br>{{windsp}}</p>
+                    
+                </div>
+                <div class="pressure">
+                    <p class="iconset">
+                        <img src="{% static './img/pressure.png' %}" alt="" srcset="" height="30px" width="50px">
+                    </p>
+                    <p>pressure<br>{{pressure}}</p>
+                    
+                </div>
+            
+            </div>
+        </div>
+        {% else %}
+        <p style="color: red; padding: 10px;">{{error_message}}</p>
+        {% endif %}
+        
+
+    </div>
+    
+ 
+</body>
+
+</html>
